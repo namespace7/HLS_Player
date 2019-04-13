@@ -1,4 +1,6 @@
 # HLS_Player
+The application is Hard coded in Java.
+
 The application allow users to test Hls stream, implementation of track selectection allows user to select video qulaity manually.
 
 The application uses Exo-player library.
