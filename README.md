@@ -8,7 +8,7 @@ Exo-player version used - 2.8.4
 
 minSdkVersion 21
 
-![alt text](https://imgur.com/a/A1le9oU)
+![Screenshot](https://i.imgur.com/R4CFl2A.png)
 
 Was this project helpful ? 
 
