@@ -11,6 +11,7 @@ minSdkVersion 21
 Screenshots
 
 ![Imgur](https://i.imgur.com/3TJu8Zu.png)
+![Imgur](https://i.imgur.com/cdyfW4r.png)
 ![Screenshot](https://i.imgur.com/R4CFl2A.png)
 
 Was this project helpful ? 
