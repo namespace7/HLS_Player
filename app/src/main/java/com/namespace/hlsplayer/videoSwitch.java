@@ -11,7 +11,6 @@ package com.namespace.hlsplayer;
 import android.app.AlertDialog;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -19,6 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -63,7 +65,6 @@ public class videoSwitch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //will hide the status bar
         setContentView(R.layout.activity_video_switch);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //will rotate the screen
@@ -73,6 +74,7 @@ public class videoSwitch extends AppCompatActivity {
         String name = b.getString("name_","");
         String address = ("http://" + name + "/" + url);
 
+
         if (playable.equals("yes")) {
             URL = Uri.parse(address);
             // Toast.makeText(getBaseContext(), address, Toast.LENGTH_LONG).show();
@@ -80,9 +82,9 @@ public class videoSwitch extends AppCompatActivity {
         } else {
             Toast.makeText(getBaseContext(), "Address is empty or not Valid! Playing a pre-defined Url", Toast.LENGTH_LONG).show();
             //  Toast.makeText(getBaseContext(), "Player launched!", Toast.LENGTH_LONG).show();
-             URL = Uri.parse("https://s3-us-west-2.amazonaws.com/hls-playground/hls.m3u8");//multiple quality
+            // URL = Uri.parse("https://s3-us-west-2.amazonaws.com/hls-playground/hls.m3u8");//multiple quality
             //URL = Uri.parse("https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8");
-            //URL = Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8");
+            URL = Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8");
             // URL = Uri.parse("http://115.112.70.86/new.m3u8");
             //URL = Uri.parse("http://cbsnewshd-lh.akamaihd.net/i/CBSNHD_7@199302/index_700_av-p.m3u8");
             initializePlayer(bandwidthMeter);
@@ -138,6 +140,7 @@ public class videoSwitch extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Error Occurred While Fetching the Url,Please check the Url ", Toast.LENGTH_LONG).show();
                 player.stop();
                 player.setPlayWhenReady(true);
+
                 initializePlayer(bandwidthMeter);
             }
             @Override
