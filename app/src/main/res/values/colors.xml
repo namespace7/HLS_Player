@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="custom1">#94a5ae</color>
     <color name="custom2">#af908a</color>
+    <color name="Twilight_Blue">#f9ffff</color>
+    <color name="my_app_primary_dark">#7c2ccf</color>
+    <color name="my_app_secondary">#6109d3</color>
 </resources>

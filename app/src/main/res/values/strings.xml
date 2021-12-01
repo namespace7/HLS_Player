@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hls Player</string>
+    <string name="textfield_label">URL</string>
 </resources>
