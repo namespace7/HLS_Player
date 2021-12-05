@@ -9,6 +9,7 @@ package com.namespace.hlsplayer;
 // if user doesn't pass the url perimeter ,the appplication plays a hls stream which is pre defined in the app!!
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,6 +45,10 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.material.snackbar.Snackbar;
+
+import dev.shreyaspatil.MaterialDialog.MaterialDialog;
+import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 
 
 public class videoSwitch extends AppCompatActivity {
@@ -70,14 +75,11 @@ public class videoSwitch extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //will rotate the screen
         Bundle b = getIntent().getExtras();
         String playable = b.getString("playable","");
+
         String url = b.getString("address_", "");
-        String name = b.getString("name_","");
-        String address = ("http://" + name + "/" + url);
-
-
         if (playable.equals("yes")) {
-            URL = Uri.parse(address);
-            // Toast.makeText(getBaseContext(), address, Toast.LENGTH_LONG).show();
+            URL = Uri.parse(url);
+            // Toast.makeText(getBaseContext(), url, Toast.LENGTH_LONG).show();
             initializePlayer(bandwidthMeter);
         } else {
             Toast.makeText(getBaseContext(), "Address is empty or not Valid! Playing a pre-defined Url", Toast.LENGTH_LONG).show();
@@ -137,11 +139,33 @@ public class videoSwitch extends AppCompatActivity {
 
             @Override
             public void onPlayerError(ExoPlaybackException error) {
-                Toast.makeText(getBaseContext(), "Error Occurred While Fetching the Url,Please check the Url ", Toast.LENGTH_LONG).show();
-                player.stop();
-                player.setPlayWhenReady(true);
+                MaterialDialog mDialog = new MaterialDialog.Builder(videoSwitch.this)
+                        .setTitle("Alert")
+                        .setMessage("Error Occurred While Fetching the Url,Please check the URL\n" + error + "")
+                        .setCancelable(false)
+                        .setPositiveButton("Retry", new MaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                // Operation
+                                Intent intent = getIntent();
+                                finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Edit Url", new MaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                dialogInterface.dismiss();
+                                Intent myIntent = new Intent(videoSwitch.this, MainActivity.class);
+                                videoSwitch.this.startActivity(myIntent);
+                            }
+                        })
+                        .build();
 
-                initializePlayer(bandwidthMeter);
+                // Show Dialog
+                mDialog.show();
+                player.stop();
+
             }
             @Override
             public void onPositionDiscontinuity(int reason) {

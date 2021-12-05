@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryGray"
+    android:background="@color/FountainBlue"
     tools:context=".MainActivity">
+
+
+
+
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -41,6 +45,16 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <com.sergivonavi.materialbanner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:buttonLeftText="Dismiss"
+        app:buttonRightText="Turn on wifi"
+        app:messageText="You have lost connection to the Internet."
+        tools:ignore="MissingConstraints" />
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +70,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_marginTop="300dp"
             android:id="@+id/url_field"
-            android:background="@color/primaryGray"
+            android:background="@color/FountainBlue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
