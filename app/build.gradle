@@ -29,4 +29,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
     implementation 'com.google.android.material:material:1.4.0'
+    implementation "com.sergivonavi:materialbanner:1.2.0"
+    implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.2'
 }
