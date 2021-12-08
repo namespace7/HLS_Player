@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.namespace.hlsplayer"
@@ -31,4 +35,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation "com.sergivonavi:materialbanner:1.2.0"
     implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.2'
+    implementation 'com.airbnb.android:lottie:4.2.2'
 }

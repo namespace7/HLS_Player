@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/drawable/splash_screen_background.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/layout/activity_main.xml" value="0.12273550724637682" />
+        <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/layout/activity_splash_screen.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/layout/activity_video_switch.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/layout/exo_player_control.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/1nitr/Documents/HLS_Player/app/src/main/res/layout/text_input_layout.xml" value="0.25" />
