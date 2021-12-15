@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Hls Player</string>
-    <string name="textfield_label">URL</string>
+    <string name="textfield_label">URL (http://)</string>
     <string name="content_description_more">Setting</string>
 </resources>

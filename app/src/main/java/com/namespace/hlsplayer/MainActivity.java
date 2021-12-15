@@ -9,11 +9,13 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +26,7 @@ import com.sergivonavi.materialbanner.BannerInterface;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button play;
+    private Button play,demo;
     String playable;
     Banner banner;
 
@@ -49,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final EditText url_data = (EditText) findViewById(R.id.url_field) ;
         play= (Button)findViewById(R.id.play_button);
-        //play.setEnabled(false);
+        play.setEnabled(false);
+        demo= (Button)findViewById(R.id.demo_button);
 
         banner = findViewById(R.id.banner);
         banner.setLeftButtonListener(new BannerInterface.OnClickListener() {
@@ -103,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                TextView text_chnaged = findViewById(R.id.text_view_id);
+                text_chnaged.setText(editable);
                 play.setEnabled(URLUtil.isValidUrl(editable.toString()));
 
             }
@@ -111,6 +116,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String s = url_data.getText().toString();
+                if(s != null && !s.isEmpty() )
+                {
+                    playable = "yes";
+                }
+                else {
+                    playable = "no";
+                }
+
+                Intent i = new Intent(MainActivity.this, videoSwitch.class);
+                i.putExtra("address_",s);
+                i.putExtra("playable", playable);
+                startActivity(i);
+            }
+        });
+
+        demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
