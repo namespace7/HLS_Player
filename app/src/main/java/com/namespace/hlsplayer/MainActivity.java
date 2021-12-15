@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final EditText url_data = (EditText) findViewById(R.id.url_field) ;
         play= (Button)findViewById(R.id.play_button);
-        play.setEnabled(false);
+        //play.setEnabled(false);
 
         banner = findViewById(R.id.banner);
         banner.setLeftButtonListener(new BannerInterface.OnClickListener() {
