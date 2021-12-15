@@ -9,9 +9,6 @@
 
 
 
-
-
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -56,6 +53,22 @@
         tools:ignore="MissingConstraints" />
 
 
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text_view_id"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="100sp"
+            android:text=""
+            />
+
+    </RelativeLayout>
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="300dp"
@@ -71,7 +84,8 @@
             android:layout_marginTop="300dp"
             android:id="@+id/url_field"
             android:background="@color/FountainBlue"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -99,6 +113,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/demo_button"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:text="Play pre-defined Link"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833" />
 
     <ImageView
         android:id="@+id/imageView"
