@@ -19,6 +19,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.sergivonavi.materialbanner.Banner;
@@ -26,8 +29,7 @@ import com.sergivonavi.materialbanner.BannerInterface;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button play,demo;
-    String playable;
+    private Button playerFragment,aboutFragment;
     Banner banner;
 
     @Override
@@ -49,11 +51,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        final EditText url_data = (EditText) findViewById(R.id.url_field) ;
-        play= (Button)findViewById(R.id.play_button);
-        play.setEnabled(false);
-        demo= (Button)findViewById(R.id.demo_button);
-
+        playerFragment = findViewById(R.id.player_button);
+        aboutFragment = findViewById(R.id.about_button);
         banner = findViewById(R.id.banner);
         banner.setLeftButtonListener(new BannerInterface.OnClickListener() {
             @Override
@@ -81,81 +80,30 @@ public class MainActivity extends AppCompatActivity {
             // Not Available...
             banner.show();
         }
-
-
-
-
-        url_data.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //Before user enters the text
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //On user changes the text
-                if(s.toString().trim().length()==0) {
-                    play.setEnabled(false);
-                    Snackbar.make(findViewById(android.R.id.content), "Cannot be null", Snackbar.LENGTH_LONG)
-                            .show();
-
-                } else {
-                    play.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                TextView text_chnaged = findViewById(R.id.text_view_id);
-                text_chnaged.setText(editable);
-                play.setEnabled(URLUtil.isValidUrl(editable.toString()));
-
-            }
-
-
-        });
-
-        play.setOnClickListener(new View.OnClickListener() {
+        playerFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                replaceFragment(new PlayerFragment());
 
-                String s = url_data.getText().toString();
-                if(s != null && !s.isEmpty() )
-                {
-                    playable = "yes";
-                }
-                else {
-                    playable = "no";
-                }
-
-                Intent i = new Intent(MainActivity.this, videoSwitch.class);
-                i.putExtra("address_",s);
-                i.putExtra("playable", playable);
-                startActivity(i);
             }
         });
-
-        demo.setOnClickListener(new View.OnClickListener() {
+        aboutFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String s = url_data.getText().toString();
-                if(s != null && !s.isEmpty() )
-                {
-                    playable = "yes";
-                }
-                else {
-                    playable = "no";
-                }
-
-                Intent i = new Intent(MainActivity.this, videoSwitch.class);
-                i.putExtra("address_",s);
-                i.putExtra("playable", playable);
-                startActivity(i);
+                replaceFragment(new AboutFragment());
             }
         });
+
 
     }
+
+    private void replaceFragment(Fragment Fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,Fragment);
+        fragmentTransaction.commit();
+    }
+
     /**
      * CHECK WHETHER INTERNET CONNECTION IS AVAILABLE OR NOT
      */
