@@ -11,18 +11,21 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.sergivonavi.materialbanner.Banner;
 import com.sergivonavi.materialbanner.BannerInterface;
@@ -51,8 +54,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        playerFragment = findViewById(R.id.player_button);
-        aboutFragment = findViewById(R.id.about_button);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.page_1:
+                                replaceFragment(new PlayerFragment());
+                                break;
+                            case R.id.page_2:
+                                replaceFragment(new AboutFragment());
+                                break;
+
+                        }
+                        return true;
+                    }
+                });
+
+
+     //   playerFragment = findViewById(R.id.page_1);
+       // aboutFragment = findViewById(R.id.page_2);
         banner = findViewById(R.id.banner);
         banner.setLeftButtonListener(new BannerInterface.OnClickListener() {
             @Override
@@ -80,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
             // Not Available...
             banner.show();
         }
+
+        /*
         playerFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new AboutFragment());
             }
         });
+
+
+         */
 
 
     }
