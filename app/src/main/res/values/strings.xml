@@ -6,4 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="player_fragment">PLAYER</string>
     <string name="about_fragment">ABOUT</string>
+    <string name="text_label_2">About</string>
+    <string name="text_label_1">PLAYER</string>
 </resources>
