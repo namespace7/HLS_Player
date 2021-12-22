@@ -32,7 +32,6 @@ import com.sergivonavi.materialbanner.BannerInterface;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button playerFragment,aboutFragment;
     Banner banner;
 
     @Override
@@ -58,25 +57,20 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.page_1:
-                                replaceFragment(new PlayerFragment());
-                                break;
-                            case R.id.page_2:
-                                replaceFragment(new AboutFragment());
-                                break;
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.page_1:
+                            replaceFragment(new PlayerFragment());
+                            break;
+                        case R.id.page_2:
+                            replaceFragment(new AboutFragment());
+                            break;
 
-                        }
-                        return true;
                     }
+                    return true;
                 });
 
 
-     //   playerFragment = findViewById(R.id.page_1);
-       // aboutFragment = findViewById(R.id.page_2);
         banner = findViewById(R.id.banner);
         banner.setLeftButtonListener(new BannerInterface.OnClickListener() {
             @Override
@@ -105,23 +99,7 @@ public class MainActivity extends AppCompatActivity {
             banner.show();
         }
 
-        /*
-        playerFragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(new PlayerFragment());
 
-            }
-        });
-        aboutFragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(new AboutFragment());
-            }
-        });
-
-
-         */
 
 
     }

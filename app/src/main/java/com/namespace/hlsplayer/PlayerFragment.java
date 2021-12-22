@@ -88,17 +88,10 @@ public class PlayerFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String s = url_data.getText().toString();
-                if(s != null && !s.isEmpty() )
-                {
-                    playable = "yes";
-                }
-                else {
-                    playable = "no";
-                }
+                playable = "no";
+
 
                 Intent i = new Intent(getContext(), videoSwitch.class);
-                i.putExtra("address_",s);
                 i.putExtra("playable", playable);
                 startActivity(i);
             }
