@@ -79,7 +79,6 @@ public class videoSwitch extends AppCompatActivity {
         String url = b.getString("address_", "");
         if (playable.equals("yes")) {
             URL = Uri.parse(url);
-            // Toast.makeText(getBaseContext(), url, Toast.LENGTH_LONG).show();
             initializePlayer(bandwidthMeter);
         } else {
             Toast.makeText(getBaseContext(), "Address is empty or not Valid! Playing a pre-defined Url", Toast.LENGTH_LONG).show();
