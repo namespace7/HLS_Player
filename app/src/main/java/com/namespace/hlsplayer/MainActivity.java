@@ -30,6 +30,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.sergivonavi.materialbanner.Banner;
 import com.sergivonavi.materialbanner.BannerInterface;
 
+import dev.shreyaspatil.MaterialDialog.MaterialDialog;
+import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
+
 
 public class MainActivity extends AppCompatActivity {
     Banner banner;
@@ -99,7 +102,22 @@ public class MainActivity extends AppCompatActivity {
             banner.show();
         }
 
+        MaterialDialog mDialog = new MaterialDialog.Builder(MainActivity.this)
+                .setTitle("About")
+                .setMessage("Exo-player version used - 2.8.4")
+                .setCancelable(false)
+                .setPositiveButton("Got it", new MaterialDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        // Operation
+                        dialogInterface.dismiss();
+                    }
+                })
 
+                .build();
+
+        // Show Dialog
+        mDialog.show();
 
 
     }
